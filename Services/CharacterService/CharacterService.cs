@@ -1,20 +1,17 @@
 using System.Collections.Generic;
-using dotnet_rpg.Models;
 using System.Linq;
+using dotnet_rpg.Models;
 
 namespace dotnet_rpg.Services.CharacterService
 {
     public class CharacterService : ICharacterService
     {
-        public List<Character> characters = new List<Character>
+        private static List<Character> characters = new List<Character>
         {
-            private static List<Character> characters = new List<Character>{
-                new Character();
-                new Character{ Id = 1, Name = "Sam"}
-            };
+            new Character(),
+            new Character { Id = 1, Name = "Sam"}
+        };
         
-        }
-                
         public List<Character> AddCharacter(Character newCharacter)
         {
             characters.Add(newCharacter);
@@ -28,7 +25,7 @@ namespace dotnet_rpg.Services.CharacterService
 
         public Character GetCharacterById(int id)
         {
-            return Ok(characters.FirstOrDefault(c => c.Id == id));
+            return characters.FirstOrDefault(c => c.Id == id);
         }
     }
 }
