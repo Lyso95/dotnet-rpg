@@ -92,7 +92,9 @@ namespace dotnet_rpg.Services.CharacterService
             var serviceResponse = new ServiceResponse<GetCharacterDto>();
             try
             {
-                Character character = await _context.Characters.FirstOrDefaultAsync(c => c.Id == updatedCharacter.Id);
+                Character character = await _context.Characters
+                .Include(c => c.User)
+                .FirstOrDefaultAsync(c => c.Id == updatedCharacter.Id);
                 if(character.User.Id == GetUserId())
                 {
                 
